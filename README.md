@@ -66,7 +66,7 @@ miner_key = ""
 
  #NOW START THE NODE 
 
-<pre><code>../target/release/zgs_node --config config.toml --miner-key <your_private_key></code></pre>
+<pre><code>../target/release/zgs_node --config config.toml --miner-key your_private_key </code></pre>
 
 NOW CHECK BLOCK ITS RUNNING OR NOT
 
