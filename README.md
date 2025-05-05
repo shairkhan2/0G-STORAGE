@@ -15,6 +15,8 @@ Install Dependencies
 INSTALL RUST
 
 <pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh </code></pre>
+<pre><code>. "$HOME/.cargo/env"</code></pre>
+
 
 CLONE 0G-LAB REPO
 
