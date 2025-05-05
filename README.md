@@ -25,9 +25,40 @@ This repository helps you set up and run a 0G Storage Node using a custom config
 ```bash
 sudo apt update && sudo apt upgrade -y
 
-2. Install Dependencies
+(`### 2. Install Dependencies`)
 
 sudo apt install curl wget git dos2unix -y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 3. Install Docker
 
