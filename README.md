@@ -10,8 +10,7 @@ Bandwidth	100 Mbps (Download / Upload)	-
 
 Install Dependencies
 
-<pre><code>sudo apt-get update sudo apt-get install clang
-cmake build-essential pkg-config libssl-dev </code></pre>
+<pre><code>sudo apt-get update sudo apt-get install clang cmake build-essential pkg-config libssl-dev </code></pre>
 
 INSTALL RUST
 
