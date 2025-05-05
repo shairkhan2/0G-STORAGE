@@ -6,10 +6,10 @@
 #######################################################################
 
 # Data directory where node's keyfile is stored.
-# network_dir = "network"
+ network_dir = "network"
 
 # IP address to listen on.
-# network_listen_address = "0.0.0.0"
+ network_listen_address = "0.0.0.0"
 
 # The address to broadcast to peers about which address we are listening on. Generally,
 # configure public IP address for UDP discovery. If not specified, program will try to
@@ -141,17 +141,17 @@ log_sync_start_block_number = 1
 #######################################################################
 
 # Directory to store data.
-# db_dir = "db"
+ db_dir = "db"
 
 #######################################################################
 ###                     Misc Config Options                         ###
 #######################################################################
 
 # Log configuration file.
-# log_config_file = "log_config"
+ log_config_file = "/root/0g-storage-node/run/log_config"
 
 # Log directory.
-# log_directory = "log"
+ log_directory = "log"
 
 #######################################################################
 ###                     Mine Config Options                         ###
@@ -168,7 +168,7 @@ reward_contract_address = "0x233B2768332e4Bae542824c93cc5c8ad5d44517E"
 #
 # Note, the corresponding address should have enough tokens to pay
 # transaction gas fee.
-# miner_key = ""
+ miner_key = ""
 
 # Period for querying mine context on chain (in seconds)
 #
@@ -240,7 +240,7 @@ batcher_announcement_capacity = 100
 #######################################################################
 ###                   File Sync Config Options                      ###
 #######################################################################
-# [sync]
+ [sync]
 
 # Enable file sync among peers automatically. When enabled, each node will store
 # all files, and sufficient disk space is required.
@@ -308,13 +308,13 @@ max_random_workers = 8
 ###                     RPC Config Options                          ###
 #######################################################################
 
-# [rpc]
+ [rpc]
 
 # Whether to provide RPC service.
-# enabled = true
+ enabled = true
 
 # HTTP server address to bind for public RPC.
-# listen_address = "0.0.0.0:5678"
+ listen_address = "0.0.0.0:5678"
 
 # HTTP server address to bind for admin and debug RPC.
 # listen_address_admin = "127.0.0.1:5679"
