@@ -39,31 +39,9 @@ Download config file
   nano config.toml</code></pre>
 
 make sure to adjust these
- # Network Config Options
-network_dir = "network"
-network_listen_address = "0.0.0.0"
-
- # DB Config Options
-db_dir = "db"
-
- # Log configuration file.
-log_config_file = "log_config"
-
- #Log directory.
-log_directory = "log"
-
- # transaction gas fee.
-miner_key = ""
-
- # RPC Config Options
-[rpc]
-
- # Whether to provide RPC service.
- enabled = true
-
- # HTTP server address to bind for public RPC.
- listen_address = "0.0.0.0:5678"
-
+ add miner key your wallet pvt key new wallet
+ 
+log_config_file = "your-log-file-path" i set defoult path to /root/0g-storage-node/run/log_config
 
  #NOW START THE NODE 
 
