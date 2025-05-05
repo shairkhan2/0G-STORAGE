@@ -1,27 +1,19 @@
-# 🚀 0G Storage Node Setup Guide
+Hardware Requirements
+Component	Storage Node	Storage KV
+Memory	32 GB RAM	32 GB RAM
+CPU	8 cores	8 cores
+Disk	500GB / 1TB NVMe SSD	Size matches the KV streams it maintains
+Bandwidth	100 Mbps (Download / Upload)	-
 
-This repository helps you set up and run a 0G Storage Node using a custom configuration file maintained in this repo.
-
----
-
-## 📁 Folder Structure
 
 
----
 
-## ⚙️ Requirements
-
-- Ubuntu 20.04/22.04 LTS
-- Minimum 4 CPU cores & 8GB RAM
-- Docker & Docker Compose installed
-- Ports 8600-8799 open
-
----
-
-## 🧱 Step-by-Step Installation
-
-### 1. Update Your System
+Install Dependencies
 
 ```bash
-sudo apt update && sudo apt upgrade -
+sudo apt-get update
+sudo apt-get install clang cmake build-essential pkg-config libssl-dev
+```)
 
+
+hello
