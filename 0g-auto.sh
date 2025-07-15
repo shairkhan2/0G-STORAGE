@@ -86,7 +86,7 @@ if [[ -f "$BACKUP_CFG" ]]; then
   echo -e "${GREEN}✅ Restored config.toml from backup${NC}"
 else
   echo -e "${RED}⬇️  No config found – downloading default${NC}"
-  curl -fsSL -o "$CFG_SRC" https://raw.githubusercontent.com/Mayankgg01/0G-Storage-Node-Guide/main/config.toml
+  curl -fsSL -o "$CFG_SRC" https://raw.githubusercontent.com/shairkhan2/0G-STORAGE/refs/heads/main/config.toml
 
   read -e -p "🔐 Enter PRIVATE KEY (with or without 0x): " k
   k=${k#0x}
