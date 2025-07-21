@@ -44,17 +44,30 @@ if [[ "$IS_OLD" = false && ! -d "$NODE_DIR" ]]; then
   sudo apt-get update && sudo apt-get upgrade -y
   sudo apt install curl iptables build-essential git wget lz4 jq make protobuf-compiler cmake gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev screen ufw -y
 
-  echo -e "${GREEN}🦀 Installing Rust...${NC}"
-  curl https://sh.rustup.rs -sSf | sh -s -- -y
-  source "$HOME/.cargo/env"
+  # Check Rust
+  if command -v rustc >/dev/null 2>&1; then
+    echo -e "${GREEN}🦀 Rust is already installed: $(rustc --version)${NC}"
+  else
+    echo -e "${GREEN}🦀 Installing Rust...${NC}"
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    source "$HOME/.cargo/env"
+  fi
 
-  echo -e "${GREEN}🐹 Installing Go 1.24.3...${NC}"
-  wget https://go.dev/dl/go1.24.3.linux-amd64.tar.gz
-  sudo rm -rf /usr/local/go
-  sudo tar -C /usr/local -xzf go1.24.3.linux-amd64.tar.gz
-  rm go1.24.3.linux-amd64.tar.gz
-  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-  source ~/.bashrc
+  # Check Go
+  if command -v go >/dev/null 2>&1; then
+    echo -e "${GREEN}🐹 Go is already installed: $(go version)${NC}"
+  else
+    echo -e "${GREEN}🐹 Installing Go 1.24.3...${NC}"
+    wget https://go.dev/dl/go1.24.3.linux-amd64.tar.gz
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf go1.24.3.linux-amd64.tar.gz
+    rm go1.24.3.linux-amd64.tar.gz
+    if ! grep -q '/usr/local/go/bin' ~/.bashrc; then
+      echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+    fi
+    # Do not source .bashrc in script, print instructions instead:
+    echo -e "${GREEN}Go installed. Please restart your shell or run: source ~/.bashrc${NC}"
+  fi
 fi
 
 ### ───────────────────────────────
