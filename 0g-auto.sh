@@ -151,8 +151,8 @@ echo -e "${GREEN}🧊 Seeding snapshot...${NC}"
 sleep 15
 sudo systemctl stop zgs
 
-SNAP_URL="https://github.com/Mayankgg01/0G-Storage-Node-Guide/releases/download/v1.0/flow_db.tar.xz \
-  -O $HOME/0g-storage-node/run/db/flow_db.tar.xz"
+SNAP_URL="https://github.com/Mayankgg01/0G-Storage-Node-Guide/releases/download/v1.0/flow_db.tar.xz"
+-O $HOME/0g-storage-node/run/db/flow_db.tar.xz"
 DB_DIR="$RUN_DIR/db"
 rm -rf "$DB_DIR/flow_db"
 mkdir -p "$DB_DIR"
