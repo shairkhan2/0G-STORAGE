@@ -42,7 +42,7 @@ fi
 if [[ "$IS_OLD" = false && ! -d "$NODE_DIR" ]]; then
   echo -e "${RED}📦 New user detected – installing dependencies...${NC}"
   sudo apt-get update && sudo apt-get upgrade -y
-  sudo apt install curl iptables build-essential git wget lz4 jq make protobuf-compiler cmake gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev screen ufw -y
+  sudo apt install curl iptables build-essential git wget lz4 jq make protobuf-compiler cmake gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdma[...]
 
   # Check Rust
   if command -v rustc >/dev/null 2>&1; then
@@ -145,20 +145,30 @@ sudo systemctl start zgs
 echo -e "${GREEN}🚀 Node started (initial test)...${NC}"
 
 ### ───────────────────────────────
-### 8. Stop, download, and restore snapshot
+### 8. Stop, download, and restore snapshot (NEW METHOD)
 ### ───────────────────────────────
-echo -e "${GREEN}🧊 Seeding snapshot...${NC}"
+echo -e "${GREEN}🧊 Downloading and extracting snapshot using new method...${NC}"
 sleep 15
 sudo systemctl stop zgs
 
-SNAP_URL="https://github.com/Mayankgg01/0G-Storage-Node-Guide/releases/download/v1.0/flow_db.tar.xz"
 DB_DIR="$RUN_DIR/db"
 rm -rf "$DB_DIR/flow_db"
 mkdir -p "$DB_DIR"
-wget -q "$SNAP_URL" -O "$DB_DIR/flow_db.tar.xz"
-tar -xJvf "$DB_DIR/flow_db.tar.xz" -C "$DB_DIR"
-rm "$DB_DIR/flow_db.tar.xz"
-echo -e "${GREEN}✅ Snapshot loaded${NC}"
+
+echo -e "${GREEN}📥 Downloading multi-part snapshot archive...${NC}"
+wget -q https://github.com/Mayankgg01/0G-Storage-Node-Guide/releases/download/v1.0/flow_db.tar.zst.part-aa -O "$DB_DIR/flow_db.tar.zst.part-aa"
+wget -q https://github.com/Mayankgg01/0G-Storage-Node-Guide/releases/download/v1.0/flow_db.tar.zst.part-ab -O "$DB_DIR/flow_db.tar.zst.part-ab"
+
+echo -e "${GREEN}🔗 Combining parts...${NC}"
+cat "$DB_DIR/flow_db.tar.zst.part-aa" "$DB_DIR/flow_db.tar.zst.part-ab" > "$DB_DIR/flow_db.tar.zst"
+
+echo -e "${GREEN}📦 Extracting with zstd compression...${NC}"
+tar --use-compress-program=unzstd -xvf "$DB_DIR/flow_db.tar.zst" -C "$DB_DIR/"
+
+echo -e "${GREEN}🧹 Cleaning up temporary files...${NC}"
+rm "$DB_DIR/flow_db.tar.zst.part-aa" "$DB_DIR/flow_db.tar.zst.part-ab" "$DB_DIR/flow_db.tar.zst"
+
+echo -e "${GREEN}✅ Snapshot loaded (syncing from block 5971353)${NC}"
 
 sudo systemctl restart zgs
 echo -e "${GREEN}🔁 Node restarted with snapshot${NC}"
